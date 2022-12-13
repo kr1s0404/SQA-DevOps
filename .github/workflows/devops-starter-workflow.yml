@@ -38,11 +38,12 @@ jobs:
         pip install pytest && pytest Tests/unit_tests --junitxml=./testresults/test-results.xml && pip install pycmd && py.cleanup Tests/
     
     - uses: actions/checkout@v2
-      with:
+      with: 
         fetch-depth: 0
     - uses: sonarsource/sonarqube-scan-action@master
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOEKN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
     
     # Uploading unit test results to artifact store
     - name: Upload unit test results to Artifact
